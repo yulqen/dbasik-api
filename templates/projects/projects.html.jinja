@@ -1,0 +1,21 @@
+{% extends "shared/base.html.jinja" %}
+
+{% block title %}dbasik{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <h1>Projects</h1>
+    <div>
+      Here is a list of projects - or the ones we are interested in anyway.
+    </div>
+    <div>
+      <ul>
+        {% for p in projects %}
+        <li><a href="{{ url_for('get_project', project_id=p.id) }}">{{p.name}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,14 @@
+{% extends "shared/base.html.jinja" %}
+
+{% block title %}{{project.name}}{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <h1>{{project.name}} (id: {{ project_id }})</h1>
+    <div>
+      {{project.type}} |
+      {{project.budget}}
+    </div>
+{% endblock %}

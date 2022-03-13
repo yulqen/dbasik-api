@@ -1,0 +1,3 @@
+An exercise to learn [FastAPI](https://fastapi.tiangolo.com) and write a little Python again.
+
+This is a re-imagining of the [dbasik prototype](https://github.com/yulqen/dbasik/) I wrote in 2019 for DfT, a proof-of-concept which has only really came to the fore in 2022. I thought I'd peel everything back from the Django mechanics of `dbasik` and expose the simplicity of the job in hand - extracting data from spreadsheets - and put HTTP endpoints to the fore.  `dbasik`, and [datamaps](https://github.com/yulqen/datamaps) alongside it, should be very small connectors in a longer pipeline - Unix-like. This is just another version of that.

@@ -10,4 +10,9 @@ router = fastapi.APIRouter()
 
 @router.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    return templates.TemplateResponse("home/index.html", {"request": request})
+    return templates.TemplateResponse("home/index.html.jinja", {"request": request})
+
+
+@router.get("/about")
+def about():
+    return {}

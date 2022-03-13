@@ -1,3 +1,7 @@
 fastapi
 uvicorn
 jinja2
+mypy
+pdbpp
+flake8
+black
