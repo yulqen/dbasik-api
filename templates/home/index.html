@@ -1,0 +1,30 @@
+{% extends "shared/base.html" %}
+
+{% block title %}dbasik{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <div id='header'>
+     <h1>dbasik</h1> 
+    </div>
+
+    <div>
+        Project Count: {{ project_count }}
+    </div>
+    <div>
+    <ol>
+        {% for p in major_projects %}
+            <li><a href="{{ url_for('get_project', project_id=p.id) }}">{{ p.name }}</a></li>
+        {% endfor %}
+    </ol>
+    </div>
+
+    <div id="content">
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada tortor mauris, vel pulvinar mauris tristique eu. Ut sed ligula vel est scelerisque aliquet convallis et ex. Phasellus pellentesque ante id quam facilisis consequat. Aenean orci augue, mattis sed laoreet efficitur, dictum rutrum odio. Donec elementum dictum sapien sit amet vulputate. Mauris mi justo, semper et lacus in, mollis iaculis orci. Quisque aliquam sem dui, et porttitor felis consequat in. Proin mollis laoreet nibh at interdum. Suspendisse porta, lectus sed imperdiet viverra, mauris velit consectetur odio, a vestibulum nisl odio sed urna. Praesent diam massa, vulputate quis enim ut, consequat feugiat elit. Aenean eleifend risus id orci dapibus, eu rhoncus nisl suscipit. Vivamus sit amet hendrerit urna.</p>
+    <p>Curabitur blandit id lectus non commodo. Nullam aliquam enim nec tellus eleifend, et cursus ante tempus. Sed sollicitudin augue faucibus justo ullamcorper rhoncus. Mauris vel porttitor ligula, sit amet interdum felis. Phasellus euismod diam augue, nec tempor nisl tempus ac. Nullam commodo leo eu interdum malesuada. Quisque justo enim, facilisis eu tempus eget, fringilla sed enim. Maecenas lacinia lorem ut tortor viverra fringilla.</p>
+	<p>Integer nec justo et orci iaculis elementum. Sed auctor sem at lectus tincidunt, ut maximus velit porta. Sed in mi mi. Vestibulum blandit aliquam eleifend. Praesent sit amet odio nec risus pellentesque faucibus. Sed mi massa, iaculis quis laoreet vitae, tincidunt in justo. Nullam viverra et est nec aliquam. Pellentesque ut ligula euismod, varius dui vel, tempor erat.</p>
+	<p>Fusce nulla risus, consequat nec finibus eget, pharetra eu magna. Suspendisse porttitor nulla lorem, ut elementum sem consectetur eget. Mauris ultrices ex et ipsum viverra eleifend. Sed eget consectetur tortor. Pellentesque nec imperdiet nunc, at elementum sapien. Donec auctor varius augue eu posuere. Pellentesque cursus nisl elit, sit amet varius quam vulputate ut.</p>
+    </div>
+{% endblock %}

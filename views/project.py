@@ -28,7 +28,7 @@ dummy_projects = [
 @router.get("/projects", response_class=HTMLResponse)
 async def projects(request: Request):
     return templates.TemplateResponse(
-        "projects/projects.html.jinja", {"request": request, "projects": dummy_projects}
+        "projects/projects.html", {"request": request, "projects": dummy_projects}
     )
 
 
@@ -37,6 +37,6 @@ def get_project(request: Request, project_id: int):
     p = [pj for pj in dummy_projects if project_id == pj["id"]]
     p = p[0]
     return templates.TemplateResponse(
-        "projects/project.html.jinja",
+        "projects/project.html",
         {"request": request, "project_id": project_id, "project": p},
     )
