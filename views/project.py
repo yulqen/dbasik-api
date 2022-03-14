@@ -32,7 +32,7 @@ async def projects(request: Request):
     )
 
 
-@router.get("/project/{project_id}")
+@router.get("/projects/{project_id}")
 def get_project(request: Request, project_id: int):
     p = [pj for pj in dummy_projects if project_id == pj["id"]]
     p = p[0]
