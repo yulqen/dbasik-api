@@ -9,6 +9,7 @@ class ViewModelBase:
         self.error: Optional[str] = None
         self.user_id: Optional[int] = None
 
+        # We'll get this once we have users from cookies
         self.is_logged_in = False
 
     def to_dict(self) -> dict:

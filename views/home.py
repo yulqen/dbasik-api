@@ -11,7 +11,7 @@ templates = Jinja2Templates(directory="templates")
 router = fastapi.APIRouter()
 
 
-@router.get("/", response_class=HTMLResponse)
+@router.get("/")
 async def index(request: Request):
     vm = IndexViewModel(request, 3)
     return templates.TemplateResponse("home/index.html", vm.to_dict())
@@ -20,5 +20,4 @@ async def index(request: Request):
 @router.get("/about")
 def about(request: Request):
     vm = ViewModelBase(request)
-    # TODO: Use the vm
-    return {}
+    return templates.TemplateResponse("home/about.html", vm.to_dict())

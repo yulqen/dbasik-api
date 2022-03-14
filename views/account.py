@@ -9,7 +9,7 @@ router = fastapi.APIRouter()
 
 
 @router.get("/account")
-def index(request: Request):
+def account(request: Request):
     vm = AccountViewModel(request)
     return vm.to_dict()
 
