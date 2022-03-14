@@ -6,7 +6,9 @@ from views import home
 from views import account
 from starlette.staticfiles import StaticFiles
 
-app = FastAPI()
+app = FastAPI(title="dbasik - datamaps for the web",
+              description='Stop using spreadsheets to store data. Extract with dbasik.',
+              version='1.0')
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(project.router)
