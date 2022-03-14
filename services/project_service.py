@@ -39,7 +39,7 @@ def major_projects(limit: int = 2) -> list[dict[str, str | int]]:
 
 
 def project_count() -> int:
-    return 20
+    return 12
 
 
 def get_projects() -> Optional[List[Project]]:

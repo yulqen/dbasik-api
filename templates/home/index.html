@@ -13,12 +13,16 @@
     <div>
         Project Count: {{ project_count }}
     </div>
+<div>
+    <h4>Major projects</h4>
+</div>
     <div>
     <ol>
         {% for p in major_projects %}
-            <li><a href="{{ url_for('get_project', project_id=p.id) }}">{{ p.name }}</a></li>
+            <li><a href="{{ url_for('project_detail', project_id=p.id) }}">{{ p.name }}</a></li>
         {% endfor %}
     </ol>
+        <hr>
     </div>
 
     <div id="content">
