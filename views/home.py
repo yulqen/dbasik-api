@@ -3,7 +3,8 @@ from fastapi.requests import Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from viewmodels.home.indexviewmodel import IndexViewModel
+from viewmodels.home.index_view_model import IndexViewModel
+from viewmodels.shared.viewmodel import ViewModelBase
 
 templates = Jinja2Templates(directory="templates")
 
@@ -17,5 +18,7 @@ async def index(request: Request):
 
 
 @router.get("/about")
-def about():
+def about(request: Request):
+    vm = ViewModelBase(request)
+    # TODO: Use the vm
     return {}
