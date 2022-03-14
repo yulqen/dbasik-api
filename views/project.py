@@ -3,6 +3,8 @@ from fastapi.requests import Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+from viewmodels.project.project_view_model import ProjectDetailViewModel, ProjectListViewModel
+
 templates = Jinja2Templates(directory="templates")
 
 router = fastapi.APIRouter()
@@ -27,16 +29,16 @@ dummy_projects = [
 
 @router.get("/projects", response_class=HTMLResponse)
 async def projects(request: Request):
+    vm = ProjectListViewModel(request)
     return templates.TemplateResponse(
-        "projects/projects.html", {"request": request, "projects": dummy_projects}
+        "projects/projects.html", vm.to_dict()
     )
 
 
 @router.get("/projects/{project_id}")
-def get_project(request: Request, project_id: int):
-    p = [pj for pj in dummy_projects if project_id == pj["id"]]
-    p = p[0]
+def project_detail(request: Request, project_id: int):
+    vm = ProjectDetailViewModel(project_id, request)
     return templates.TemplateResponse(
-        "projects/project.html",
-        {"request": request, "project_id": project_id, "project": p},
+        "projects/project_detail.html",
+        vm.to_dict()
     )
