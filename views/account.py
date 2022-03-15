@@ -47,6 +47,23 @@ def login(request: Request):
     return templates.TemplateResponse("account/login.html", vm.to_dict())
 
 
+@router.post("/account/login")
+async def login(request: Request):
+    vm = LoginViewModel(request)
+    await vm.load()
+
+    if vm.error:
+        return templates.TemplateResponse("account/login.html", vm.to_dict())
+
+    user = user_service.login_user(vm.email, vm.password)
+    if not user:
+        vm.error = "This account does not exist or the password is wrong."
+        return templates.TemplateResponse("account/login.html", vm.to_dict())
+    response = fastapi.responses.RedirectResponse('/account', status_code=status.HTTP_302_FOUND)
+    cookie_auth.set_auth(response, user.id)
+    return response
+
+
 @router.get("/account/logout")
 def logout():
     response = fastapi.responses.RedirectResponse(url='/', status_code=status.HTTP_302_FOUND)

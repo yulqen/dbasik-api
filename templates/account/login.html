@@ -6,20 +6,20 @@
 {% endblock %}
 
 {% block content %}
-    <div id='header'>
-     <h1>Login to dbasik</h1>
+    <div id="register-header">
+        <h1>Log in to dbasik</h1>
     </div>
-
     <div class="form-container">
-        <input name="email" type="email" placeholder="Your Email Address" required>
-        <input name="password" type="password" placeholder="Password" required>
-        <button type="submit" class="button">Register</button>
-    </div>
-    {% if errors %}
-        <div class="error">{{ error }}</div>
-    {% endif %}
-
-    <div id="content">
-    Here we want you to log in.
+        <div id="register-intro">
+            <strong>Log in here</strong>
+        </div>
+        <form action="" method="post" class="login-form">
+            <input name="email" type="email" placeholder="Your Email Address" required>
+            <input name="password" type="password" placeholder="Password" required>
+            <button type="submit" class="button">Login</button>
+        </form>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
     </div>
 {% endblock %}

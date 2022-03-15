@@ -22,10 +22,10 @@
             <input name="password" onfocus="this.value=''" minlength="8" value="{{ password }}" type="password" placeholder="Password - min 8 characters" required>
             <button type="submit" class="button">Register</button>
             <button type="submit" class="button" style="background-color: red">Cancel</button>
-            {% if errors %}
-                <div class="error">{{ error }}</div>
-            {% endif %}
         </form>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
     </div>
 
 {% endblock %}
