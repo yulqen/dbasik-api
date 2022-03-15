@@ -29,6 +29,12 @@ body {
     padding: 10px;
 }
 
+#register-header {
+    margin: auto;
+    width: 20%;
+    padding-bottom: 10px;
+}
+
 .button {
     background-color: #4CAF50;
     border: none;

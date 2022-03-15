@@ -1,7 +1,10 @@
 import fastapi
+from starlette import status
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
 
+from infrastructure import cookie_auth
+from services import user_service
 from viewmodels.account.account_view_model import AccountViewModel
 from viewmodels.account.login_view_model import LoginViewModel
 from viewmodels.account.register_view_model import RegisterViewModel
@@ -29,9 +32,13 @@ async def register(request: Request):
     await vm.load()
     if vm.error:
         return templates.TemplateResponse("account/register.html", vm.to_dict())
-    else:
-        print("TODO: REDIRECT USER")
-        return templates.TemplateResponse("account/register.html", vm.to_dict())
+    # Create the account
+    account = user_service.create_account(vm.name, vm.email, vm.password)
+
+    # Log in user
+    response = fastapi.responses.RedirectResponse(url='/account', status_code=status.HTTP_302_FOUND)
+    cookie_auth.set_auth(response, account.id)
+    return response
 
 
 @router.get("/account/login")
