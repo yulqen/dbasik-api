@@ -23,6 +23,17 @@ def register(request: Request):
     return templates.TemplateResponse("account/register.html", vm.to_dict())
 
 
+@router.post("/account/register")
+async def register(request: Request):
+    vm = RegisterViewModel(request)
+    await vm.load()
+    if vm.error:
+        return templates.TemplateResponse("account/register.html", vm.to_dict())
+    else:
+        print("TODO: REDIRECT USER")
+        return templates.TemplateResponse("account/register.html", vm.to_dict())
+
+
 @router.get("/account/login")
 def login(request: Request):
     vm = LoginViewModel(request)
