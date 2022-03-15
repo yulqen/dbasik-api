@@ -1,6 +1,9 @@
+from pathlib import Path
+
 from fastapi import FastAPI
 import uvicorn
 
+from data import db_session
 from views import project
 from views import home
 from views import account
@@ -16,6 +19,12 @@ def configure():
     app.include_router(project.router)
     app.include_router(home.router)
     app.include_router(account.router)
+    config_db()
+
+
+def config_db():
+    file = (Path(__file__).parent / 'db' / 'dbasik.sqlite').absolute()
+    db_session.global_init(file.as_posix())
 
 
 def main():
