@@ -10,19 +10,22 @@
         <h1>Register for dbasik</h1>
     </div>
 
+
     <div class="form-container">
+        <div id="register-intro">
+            <strong>Please complete this form to register</strong><br>
+            Only <code>dft.gov.uk</code> emails are accepted. <br>
+        </div>
         <form action="" method="post" class="account-form">
             <input name="name" value="{{ name }}" type="text" placeholder="Your Name" required>
             <input name="email" value="{{ email }}" type="email" placeholder="Your Email Address" required>
             <input name="password" minlength="5" value="{{ password }}" type="password" placeholder="Password" required>
             <button type="submit" class="button">Register</button>
+            <button type="submit" class="button" style="background-color: red">Cancel</button>
             {% if errors %}
                 <div class="error">{{ error }}</div>
             {% endif %}
         </form>
     </div>
 
-    <div id="content">
-        Here we want you to register.
-    </div>
 {% endblock %}

@@ -1,9 +1,43 @@
-body {
-  background: #ebf9f6;
+* {
+    box-sizing: border-box;
+    font-family: Arial Helvetica, sans-serif;
 }
 
-h1 {
-  background: #a7d2ae;
-  padding-bottom: 10px;
-  padding-left: 5px;
+/* forms */
+.form-container {
+    padding: 20px;
+    width: 30%;
+    margin: auto;
+    border-radius: 6px;
+    background-color: #a7d2ae;
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px;
+    border-radius: 3px;
+    border: 1px solid green;
+}
+
+body {
+    background: #ebf9f6;
+}
+
+
+#register-intro {
+    padding: 10px;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 2px;
+    margin: 8px;
+    color: white;
+    padding: 12px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
 }
