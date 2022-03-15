@@ -26,7 +26,7 @@ def register(request: Request):
 @router.get("/account/login")
 def login(request: Request):
     vm = LoginViewModel(request)
-    return vm.to_dict()
+    return templates.TemplateResponse("account/login.html", vm.to_dict())
 
 
 @router.get("/account/logout")
