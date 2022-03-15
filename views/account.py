@@ -49,4 +49,6 @@ def login(request: Request):
 
 @router.get("/account/logout")
 def logout():
-    return {}
+    response = fastapi.responses.RedirectResponse(url='/', status_code=status.HTTP_302_FOUND)
+    cookie_auth.logout(response)
+    return response

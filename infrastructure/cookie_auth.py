@@ -37,3 +37,7 @@ def get_user_id_from_auth_cookie(request: Request) -> Optional[int]:
         print("Warning: Hash mismatch, invalid cookie value")
         return None
     return try_int(user_id)
+
+
+def logout(response: Response):
+    response.delete_cookie(auth_cookie_name)
