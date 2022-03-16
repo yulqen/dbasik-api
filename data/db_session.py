@@ -29,9 +29,9 @@ def global_init(db_file: str):
     __factory = orm.sessionmaker(bind=engine)
 
     # noinspection PyUnresolvedReferences
-    import data.__all_models
+    import data.__all_models  # this import 'sees' our 'model' classes in data...
 
-    SqlAlchemyBase.metadata.create_all(engine)
+    SqlAlchemyBase.metadata.create_all(engine)  # ...so that SqlAlchemy can create the tables here
 
 
 def create_session() -> Session:
