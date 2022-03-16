@@ -29,7 +29,7 @@ class ProjectType(SqlAlchemyBase):
     # Project relationship
     projects: List[Project] = orm.relation("Project", order_by=[
         Project.name.desc()
-    ], back_populates='project')
+    ], back_populates='project_type')
 
 
 class ProjectStage(SqlAlchemyBase):
@@ -41,7 +41,7 @@ class ProjectStage(SqlAlchemyBase):
     # Project relationship
     projects: List[Project] = orm.relation("Project", order_by=[
         Project.name.desc()
-    ], back_populates='project')
+    ], back_populates='project_stage')
 
     def __repr__(self):
         return f"<Project: {self.id}>"
@@ -56,4 +56,4 @@ class Tier(SqlAlchemyBase):
     # Project relationship
     projects: List[Project] = orm.relationship("Project", order_by=[
         Project.name.desc()
-    ], back_populates='project')
+    ], back_populates='tier')
