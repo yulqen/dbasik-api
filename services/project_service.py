@@ -1,5 +1,6 @@
 from typing import Optional, List
 
+from data import db_session
 from data.project import Project
 
 
@@ -43,9 +44,6 @@ def project_count() -> int:
 
 
 def get_projects() -> Optional[List[Project]]:
-    return [
-        Project("Another test project 1", 1, "Boring Project", "15m"),
-        Project("Another test project 2", 2, "Boring Project", "15m"),
-        Project("Another test project 3", 3, "Boring Project", "15m"),
-        Project("Another test project 4", 4, "Boring Project", "15m"),
-    ]
+    session = db_session.create_session()
+    projects = session.query(Project).all()
+    return projects

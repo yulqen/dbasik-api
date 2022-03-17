@@ -1,16 +1,28 @@
 import os.path
 
 from data import db_session
-from data.user import User
+from data.project import Project, Tier, ProjectType, ProjectStage
 
 
 def main():
     init_db()
+    create_projects()
+
+
+def create_projects():
     session = db_session.create_session()
-    user = User()
-    user.name = "Toggo"
-    user.email = "toggo@example.com"
-    session.add(user)
+    project_type = ProjectType(name="Boring Project", description="Bollocks")
+    project_stage = ProjectStage(name="Stage 1", description="Russles")
+    tier = Tier(name="Tier 1", description="This is a test Tier")
+    session.add_all([project_stage, project_type, tier])
+    session.commit()
+
+    ps = []
+    for p in ['AAA', 'AAB', 'ABB', 'BBB', 'BOOB']:
+        ps.append(Project(name=f"Test Project {p}", project_stage=project_stage,
+                          project_type=project_type,
+                          tier=tier))
+    session.add_all(ps)
     session.commit()
 
 
