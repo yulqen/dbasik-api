@@ -30,6 +30,10 @@ def init_db():
     top_dir = os.path.dirname(__file__)
     rel_file = os.path.join('..', 'db', 'dbasik.sqlite')
     db_file = os.path.abspath(os.path.join(top_dir, rel_file))
+    try:
+        os.remove(db_file)
+    except Exception as e:
+        pass
     print(f"Using {db_file}.")
     db_session.global_init(db_file)
 
