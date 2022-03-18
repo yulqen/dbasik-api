@@ -1,13 +1,14 @@
 from pathlib import Path
 
-from fastapi import FastAPI
 import uvicorn
+from fastapi import FastAPI
+from starlette.staticfiles import StaticFiles
 
 from data import db_session
-from views import project
-from views import home
 from views import account
-from starlette.staticfiles import StaticFiles
+from views import datamap
+from views import home
+from views import project
 
 app = FastAPI(title="dbasik - datamaps for the web",
               description='Stop using spreadsheets to store data. Extract with dbasik.',
@@ -19,6 +20,7 @@ def configure():
     app.include_router(project.router)
     app.include_router(home.router)
     app.include_router(account.router)
+    app.include_router(datamap.router)
     config_db()
 
 

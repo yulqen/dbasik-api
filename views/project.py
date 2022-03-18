@@ -1,6 +1,5 @@
 import fastapi
 from fastapi.requests import Request
-from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from viewmodels.project.project_view_model import ProjectDetailViewModel, ProjectListViewModel

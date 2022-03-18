@@ -1,12 +1,22 @@
 import os.path
 
 from data import db_session
+from data.datamap import Datamap
 from data.project import Project, Tier, ProjectType, ProjectStage
 
 
 def main():
     init_db()
     create_projects()
+    create_datamaps()
+
+
+def create_datamaps():
+    session = db_session.create_session()
+    tier = Tier(name="Tier 2", description="This is a test Tier 2")
+    datamap = Datamap(name='Test Datamap', tier=tier)
+    session.add(datamap)
+    session.commit()
 
 
 def create_projects():
