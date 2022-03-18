@@ -2,7 +2,7 @@ import datetime
 
 from sqlalchemy import Column, Integer, String, DateTime
 
-from dbasik.data.modelbase import SqlAlchemyBase
+from .modelbase import SqlAlchemyBase
 
 
 class User(SqlAlchemyBase):

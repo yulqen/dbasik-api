@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 from ..viewmodels.home.index_view_model import IndexViewModel
 from ..viewmodels.shared.viewmodel import ViewModelBase
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="dbasik/templates")
 
 router = fastapi.APIRouter()
 

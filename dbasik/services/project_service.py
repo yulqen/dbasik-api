@@ -1,7 +1,7 @@
 from typing import Optional, List
 
-from dbasik.data import db_session
-from dbasik.data.project import Project
+from ..data import db_session
+from ..data.project import Project
 
 
 def get_project_by_id(project_id) -> Optional[Project]:

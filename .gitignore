@@ -1,3 +1,5 @@
 db/
 dbasik/db
 .idea/
+*__pycache__
+venv

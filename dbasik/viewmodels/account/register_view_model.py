@@ -2,8 +2,8 @@ from typing import Optional
 
 from starlette.requests import Request
 
-from dbasik.services import user_service
-from dbasik.viewmodels.shared.viewmodel import ViewModelBase
+from ...services import user_service
+from ..shared.viewmodel import ViewModelBase
 
 
 class RegisterViewModel(ViewModelBase):

@@ -2,8 +2,8 @@ from typing import Optional
 
 from passlib.handlers.sha2_crypt import sha512_crypt as crypto
 
-from dbasik.data import db_session
-from dbasik.data.user import User
+from ..data import db_session
+from ..data.user import User
 
 
 def user_count() -> int:

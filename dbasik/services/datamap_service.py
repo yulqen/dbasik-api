@@ -1,7 +1,7 @@
 from typing import Optional, List
 
-from dbasik.data import db_session
-from dbasik.data.datamap import Datamap
+from ..data import db_session
+from ..data.datamap import Datamap
 
 
 def get_datamaps() -> Optional[List[Datamap]]:

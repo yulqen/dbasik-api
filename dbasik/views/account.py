@@ -3,15 +3,15 @@ from starlette import status
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
 
-from dbasik.infrastructure import cookie_auth
-from dbasik.services import user_service
-from dbasik.viewmodels.account.account_view_model import AccountViewModel
-from dbasik.viewmodels.account.login_view_model import LoginViewModel
-from dbasik.viewmodels.account.register_view_model import RegisterViewModel
+from ..infrastructure import cookie_auth
+from ..services import user_service
+from ..viewmodels.account.account_view_model import AccountViewModel
+from ..viewmodels.account.login_view_model import LoginViewModel
+from ..viewmodels.account.register_view_model import RegisterViewModel
 
 router = fastapi.APIRouter()
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="dbasik/templates")
 
 
 @router.get("/account")
@@ -36,7 +36,9 @@ async def register(request: Request):
     account = user_service.create_account(vm.name, vm.email, vm.password)
 
     # Log in user
-    response = fastapi.responses.RedirectResponse(url='/account', status_code=status.HTTP_302_FOUND)
+    response = fastapi.responses.RedirectResponse(
+        url="/account", status_code=status.HTTP_302_FOUND
+    )
     cookie_auth.set_auth(response, account.id)
     return response
 
@@ -59,13 +61,17 @@ async def login(request: Request):
     if not user:
         vm.error = "This account does not exist or the password is wrong."
         return templates.TemplateResponse("account/login.html", vm.to_dict())
-    response = fastapi.responses.RedirectResponse('/account', status_code=status.HTTP_302_FOUND)
+    response = fastapi.responses.RedirectResponse(
+        "/account", status_code=status.HTTP_302_FOUND
+    )
     cookie_auth.set_auth(response, user.id)
     return response
 
 
 @router.get("/account/logout")
 def logout():
-    response = fastapi.responses.RedirectResponse(url='/', status_code=status.HTTP_302_FOUND)
+    response = fastapi.responses.RedirectResponse(
+        url="/", status_code=status.HTTP_302_FOUND
+    )
     cookie_auth.logout(response)
     return response

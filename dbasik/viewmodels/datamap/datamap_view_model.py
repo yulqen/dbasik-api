@@ -1,7 +1,7 @@
 from starlette.requests import Request
 
-from dbasik.services import datamap_service
-from dbasik.viewmodels.shared.viewmodel import ViewModelBase
+from ...services import datamap_service
+from ..shared.viewmodel import ViewModelBase
 
 
 class DatamapListViewModel(ViewModelBase):

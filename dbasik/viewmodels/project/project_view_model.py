@@ -1,7 +1,7 @@
 from starlette.requests import Request
 
-from dbasik.services import project_service
-from dbasik.viewmodels.shared.viewmodel import ViewModelBase
+from ...services import project_service
+from ..shared.viewmodel import ViewModelBase
 
 
 class ProjectDetailViewModel(ViewModelBase):
