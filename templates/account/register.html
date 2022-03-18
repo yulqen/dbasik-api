@@ -17,8 +17,8 @@
             Only <code>dft.gov.uk</code> emails are accepted. <br>
         </div>
         <form action="" method="post" class="account-form">
-            <input name="name" value="{{ name }}" type="text" placeholder="Your Name" required autofocus>
-            <input name="email" value="{{ email }}" type="email" placeholder="Your Email Address" required>
+            <input name="name" onfocus="this.value=''"  value="{{ name }}" type="text" placeholder="Your Name" required autofocus>
+            <input name="email" onfocus="this.value=''"  value="{{ email }}" type="email" placeholder="Your Email Address" required>
             <input name="password" onfocus="this.value=''" minlength="8" value="{{ password }}" type="password" placeholder="Password - min 8 characters" required>
             <button type="submit" class="button">Register</button>
             <button type="submit" class="button" style="background-color: red">Cancel</button>
