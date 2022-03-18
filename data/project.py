@@ -44,7 +44,7 @@ class ProjectStage(SqlAlchemyBase):
     ], back_populates='project_stage')
 
     def __repr__(self):
-        return f"<Project: {self.id}>"
+        return f"<Project: {self.name}>"
 
 
 class Tier(SqlAlchemyBase):
