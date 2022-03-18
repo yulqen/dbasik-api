@@ -1,0 +1,31 @@
+{% extends "shared/../shared/base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <div id="register-header">
+        <h1>Register for dbasik</h1>
+    </div>
+
+
+    <div class="form-container">
+        <div id="register-intro">
+            <strong>Please complete this form to register</strong><br>
+            Only <code>dft.gov.uk</code> emails are accepted. <br>
+        </div>
+        <form action="" method="post" class="account-form">
+            <input name="name" onfocus="this.value=''"  value="{{ name }}" type="text" placeholder="Your Name" required autofocus>
+            <input name="email" onfocus="this.value=''"  value="{{ email }}" type="email" placeholder="Your Email Address" required>
+            <input name="password" onfocus="this.value=''" minlength="8" value="{{ password }}" type="password" placeholder="Password - min 8 characters" required>
+            <button type="submit" class="button">Register</button>
+            <button type="submit" class="button" style="background-color: red">Cancel</button>
+        </form>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+
+{% endblock %}
