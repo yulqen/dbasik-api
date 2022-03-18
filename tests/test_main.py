@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from dbasik_api.main import app
+from dbasik.main import app
 
 client = TestClient(app)
 
