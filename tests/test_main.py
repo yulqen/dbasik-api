@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from starlette.testclient import TestClient
 
-import web.data.project
+from web.data.project import ProjectType, ProjectStage, Project, Tier
 
 from web.views import home
 from web.data.modelbase import SqlAlchemyBase
@@ -21,10 +21,10 @@ client = TestClient(app)
 
 
 def test_index():
-    project_type = web.data.project.ProjectType(name="Boring Project", description="Bollocks")
-    project_stage = web.data.project.ProjectStage(name="Stage 1", description="Russles")
-    tier = web.data.project.Tier(name="Tier 1", description="This is a test Tier")
-    project = web.data.project.Project(
+    project_type = ProjectType(name="Boring Project", description="Bollocks")
+    project_stage = ProjectStage(name="Stage 1", description="Russles")
+    tier = Tier(name="Tier 1", description="This is a test Tier")
+    project = Project(
         name=f"Test Project",
         project_stage=project_stage,
         project_type=project_type,
