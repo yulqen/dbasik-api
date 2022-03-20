@@ -1,9 +1,9 @@
 import os
 import os.path
 
-from dbasik.data import db_session
-from dbasik.data.datamap import Datamap
-from dbasik.data.project import Project, Tier, ProjectType, ProjectStage
+from web.data import db_session
+from web.data.datamap import Datamap
+from web.data.project import Project, Tier, ProjectType, ProjectStage
 
 
 def main():
