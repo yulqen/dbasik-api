@@ -21,15 +21,6 @@ SqlAlchemyBase.metadata.create_all(bind=engine)
 
 client = TestClient(app)
 
-def override_global_init():
-    try:
-        db = TestingSessionLocal()
-        yield db
-    finally:
-        db.close()  #type: ignore
-
-app.dependency_overrides[global_init] = override_global_init
-
 def test_index():
     project_type = ProjectType(name="Boring Project", description="Bollocks")
     project_stage = ProjectStage(name="Stage 1", description="Russles")
@@ -44,6 +35,7 @@ def test_index():
     session.add_all([project_stage, project_type, tier, project])
     session.commit()
     response = client.get("/")
+    assert response.url == 'http://testserver/'
     assert response.status_code == 200
 
 
@@ -60,6 +52,8 @@ def test_project():
     session = TestingSessionLocal()
     session.add_all([project_stage, project_type, tier, project])
     session.commit()
+    response = client.get("/projects")
+    assert response.url == 'http://testserver/projects'
     p = session.query(Project).first()
     assert p.name == 'Test Project'
     assert p.project_type.name == 'Boring Project'
