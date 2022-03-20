@@ -4,7 +4,7 @@ from starlette.templating import Jinja2Templates
 
 from ..viewmodels.datamap.datamap_view_model import DatamapListViewModel
 
-templates = Jinja2Templates(directory="dbasik/templates")
+templates = Jinja2Templates(directory="web/templates")
 
 router = fastapi.APIRouter()
 

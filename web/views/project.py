@@ -7,7 +7,7 @@ from ..viewmodels.project.project_view_model import (
     ProjectListViewModel,
 )
 
-templates = Jinja2Templates(directory="dbasik/templates")
+templates = Jinja2Templates(directory="web/templates")
 
 router = fastapi.APIRouter()
 

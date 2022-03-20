@@ -11,7 +11,7 @@ from ..viewmodels.account.register_view_model import RegisterViewModel
 
 router = fastapi.APIRouter()
 
-templates = Jinja2Templates(directory="dbasik/templates")
+templates = Jinja2Templates(directory="web/templates")
 
 
 @router.get("/account")

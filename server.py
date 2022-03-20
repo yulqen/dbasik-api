@@ -2,8 +2,8 @@ from pathlib import Path
 
 import uvicorn
 
-from dbasik.data import db_session
-from dbasik.app import app
+from web.data import db_session
+from web.app import app
 
 
 def config_db():

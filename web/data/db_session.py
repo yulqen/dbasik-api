@@ -31,7 +31,7 @@ def global_init(db_file: str):
     __factory = orm.sessionmaker(bind=engine)
 
     # noinspection PyUnresolvedReferences
-    import dbasik.data.__all_models  # this import 'sees' our 'model' classes in data...
+    import web.data.__all_models  # this import 'sees' our 'model' classes in data...
 
     SqlAlchemyBase.metadata.create_all(
         engine
