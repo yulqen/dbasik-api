@@ -2,13 +2,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from starlette.testclient import TestClient
 
-from web.data.project import ProjectType, ProjectStage, Project, Tier
-
-from web.data.db_session import global_init
-
-from web.views import home
-from web.data.modelbase import SqlAlchemyBase
+from populate import create_projects
 from server import app
+from web.data.db_session import global_init
+from web.data.modelbase import SqlAlchemyBase
+from web.data.project import Project, ProjectStage, ProjectType, Tier
+from web.views import home
 
 app.include_router(home.router)
 
@@ -40,21 +39,8 @@ def test_index():
 
 
 def test_project():
-    project_type = ProjectType(name="Boring Project", description="Bollocks")
-    project_stage = ProjectStage(name="Stage 1", description="Russles")
-    tier = Tier(name="Tier 1", description="This is a test Tier")
-    project = Project(
-        name=f"Test Project",
-        project_stage=project_stage,
-        project_type=project_type,
-        tier=tier,
-    )
-    session = TestingSessionLocal()
-    session.add_all([project_stage, project_type, tier, project])
-    session.commit()
+    global_init(":memory:")
+    create_projects()
     response = client.get("/projects")
     assert response.url == 'http://testserver/projects'
-    p = session.query(Project).first()
-    assert p.name == 'Test Project'
-    assert p.project_type.name == 'Boring Project'
 
