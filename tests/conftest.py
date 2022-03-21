@@ -1,15 +1,13 @@
 import os
 
 import pytest
+from server import app
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 from starlette.testclient import TestClient
-
-from server import app
+from web.data.datamap import Datamap, DatamapLine
 from web.data.modelbase import SqlAlchemyBase
 from web.data.project import Project, ProjectStage, ProjectType, Tier
-from web.data.datamap import Datamap
 from web.views import home
 
 
@@ -59,9 +57,22 @@ def projects(session):
 
 
 @pytest.fixture
-def datamaps(session):
+def datamap(session):
     session = session()
     tier = Tier(name="Tier 2", description="This is a test Tier 2")
     datamap = Datamap(name="Test Datamap", tier=tier)
     session.add(datamap)
     session.commit()
+    yield datamap
+
+
+@pytest.fixture
+def datamapline(datamap, session):
+    session = session()
+    dm = session.query(Datamap).first()
+    dml = DatamapLine(
+        key="Test Key 1", datatype="TEXT", sheet="Test Sheet", cellref="A10", datamap=dm
+    )
+    session.add(dml)
+    session.commit()
+    yield dml

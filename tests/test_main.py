@@ -1,5 +1,6 @@
+import pytest
 from web.data.datamap import Datamap
-from web.services.datamap_service import get_datamaps
+from web.services.datamap_service import get_datamap_lines, get_datamaps
 
 
 def test_index(client):
@@ -14,13 +15,21 @@ def test_projects_list_view(client, projects):
     assert response.url == "http://testserver/projects"
 
 
-def test_datamap_in_db(session, datamaps):
+def test_datamap_in_db(session, datamap):
     session = session()
     dm = session.query(Datamap).first()
     # TODO: this doesn't test our API
     assert dm.name == "Test Datamap"
 
 
-def test_datamap_service(datamaps):
+def test_datamap_service(datamap):
     dms = get_datamaps()
     assert dms[0].name == "Test Datamap"  # type: ignore
+
+
+def test_datamapline_from_conftest(datamapline):
+    assert datamapline.key == "Test Key 1"
+    assert datamapline.sheet == "Test Sheet"
+    assert datamapline.cellref == "A10"
+    assert datamapline.datamap.name == "Test Datamap"
+    assert datamapline.datamap.tier.name == "Tier 2"
