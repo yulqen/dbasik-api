@@ -33,6 +33,7 @@ def projects(session):
     project_stage = ProjectStage(name="Stage 1", description="Russles")
     tier = Tier(name="Tier 1", description="This is a test Tier")
     session = session()
+    session.expire_on_commit = False
     session.add_all([project_stage, project_type, tier])
     session.commit()
 
@@ -48,3 +49,4 @@ def projects(session):
         )
     session.add_all(ps)
     session.commit()
+    session.close()
