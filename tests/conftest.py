@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import pytest
 from server import app
@@ -69,10 +70,19 @@ def datamap(session):
 @pytest.fixture
 def datamapline(datamap, session):
     session = session()
-    dm = session.query(Datamap).first()
     dml = DatamapLine(
-        key="Test Key 1", datatype="TEXT", sheet="Test Sheet", cellref="A10", datamap=dm
+        key="Test Key 1",
+        datatype="TEXT",
+        sheet="Test Sheet",
+        cellref="A10",
+        datamap=datamap,
     )
     session.add(dml)
     session.commit()
     yield dml
+
+
+@pytest.fixture
+def dm_csv():
+    f = Path.cwd() / "tests" / "resources" / "dm_csv.csv"
+    return f

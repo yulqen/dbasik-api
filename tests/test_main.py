@@ -1,6 +1,10 @@
 import pytest
 from web.data.datamap import Datamap
-from web.services.datamap_service import get_datamap_lines, get_datamaps
+from web.services.datamap_service import (
+    get_datamap_lines,
+    get_datamaps,
+    import_csv_to_datamap,
+)
 
 
 def test_index(client):
@@ -27,8 +31,15 @@ def test_datamap_service(datamap):
     assert dms[0].name == "Test Datamap"  # type: ignore
 
 
+def test_import_csv_lines_to_datamap(dm_csv, datamap, session):
+    import_csv_to_datamap(dm_csv, datamap)
+    session = session()
+    dm = session.query(Datamap).first()
+    assert dm.lines[0].key == "Test Key 1"
+
+
 def test_datamapline_from_conftest(datamapline):
-    assert datamapline.key == "Test Key 1"
+    assert datamapline.key == "Test Key 2"
     assert datamapline.sheet == "Test Sheet"
     assert datamapline.cellref == "A10"
     assert datamapline.datamap.name == "Test Datamap"
