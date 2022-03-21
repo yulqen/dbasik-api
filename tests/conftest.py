@@ -9,6 +9,7 @@ from starlette.testclient import TestClient
 from server import app
 from web.data.modelbase import SqlAlchemyBase
 from web.data.project import Project, ProjectStage, ProjectType, Tier
+from web.data.datamap import Datamap
 from web.views import home
 
 
@@ -55,3 +56,12 @@ def projects(session):
     session.add_all(ps)
     session.commit()
     session.close()
+
+
+@pytest.fixture
+def datamaps(session):
+    session = session()
+    tier = Tier(name="Tier 2", description="This is a test Tier 2")
+    datamap = Datamap(name="Test Datamap", tier=tier)
+    session.add(datamap)
+    session.commit()
