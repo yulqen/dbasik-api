@@ -11,15 +11,21 @@ from web.data.modelbase import SqlAlchemyBase
 from web.data.project import Project, ProjectStage, ProjectType, Tier
 from web.views import home
 
+
 @pytest.fixture
-def session():
+def session(monkeypatch):
     SQLALCHEMY_DB_URL = "sqlite:///test.db"
     engine = create_engine(SQLALCHEMY_DB_URL, connect_args={"check_same_thread": False})
-    TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
+    TestingSessionLocal = sessionmaker(
+        autocommit=False, autoflush=False, bind=engine, expire_on_commit=False
+    )
+    monkeypatch.setattr(
+        "web.data.db_session.__factory", TestingSessionLocal, raising=True
+    )
     SqlAlchemyBase.metadata.create_all(bind=engine)
     yield TestingSessionLocal
     os.remove("test.db")
+
 
 @pytest.fixture
 def client():
@@ -33,7 +39,6 @@ def projects(session):
     project_stage = ProjectStage(name="Stage 1", description="Russles")
     tier = Tier(name="Tier 1", description="This is a test Tier")
     session = session()
-    session.expire_on_commit = False
     session.add_all([project_stage, project_type, tier])
     session.commit()
 
