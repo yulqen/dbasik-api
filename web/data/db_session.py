@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Callable, Optional
 
-import sqlalchemy as sa
+import sqlalchemy
 import sqlalchemy.orm as orm
 from sqlalchemy.orm import Session
 
@@ -25,7 +25,7 @@ def global_init(db_file: str):
     conn_str = "sqlite:///" + db_file.strip()
     print("Connecting to DB with {}".format(conn_str))
 
-    engine = sa.create_engine(
+    engine = sqlalchemy.create_engine(
         conn_str, echo=False, connect_args={"check_same_thread": False}
     )
     __factory = orm.sessionmaker(bind=engine)
