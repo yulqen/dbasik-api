@@ -64,6 +64,7 @@ def datamap(session):
     datamap = Datamap(name="Test Datamap", tier=tier)
     session.add(datamap)
     session.commit()
+    session.close()
     yield datamap
 
 
@@ -79,6 +80,7 @@ def datamapline(datamap, session):
     )
     session.add(dml)
     session.commit()
+    session.close()
     yield dml
 
 
