@@ -35,4 +35,4 @@ def test_import_csv_lines_to_datamap(dm_csv, datamaplines, datamap, session):
     import_csv_to_datamap(dm_csv, datamap)
     session = session()
     dm = session.query(Datamap).first()
-    assert dm.lines[0].key == "Test Key 1"
+    assert dm.lines[-1].key == "Test Key from CSV 2"
