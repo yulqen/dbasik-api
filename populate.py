@@ -4,15 +4,20 @@ import os.path
 from sqlalchemy.orm import Session
 
 from web.data import db_session
-from web.data.datamap import Datamap
+from web.data.datamap import Datamap, DatamapLine
 from web.data.project import Project, Tier, ProjectType, ProjectStage
 
 
 def main():
+    print("Initialising database.")
     init_db()
+    print("Creating session.")
     session = db_session.create_session()
+    print("Creating projects.")
     create_projects(session)
-    create_datamap(session)
+    print("Creating a datamap.")
+    dm = create_datamap(session)
+    create_datamap_lines(session, dm)
 
 
 def create_datamap(session: Session) -> Datamap:
@@ -23,6 +28,22 @@ def create_datamap(session: Session) -> Datamap:
     session.commit()
     session.close()
     return datamap
+
+
+def create_datamap_lines(session: Session, datamap: Datamap) -> None:
+    dmls = [
+        DatamapLine(
+            key=f"Test Key {tk}",
+            datatype="TEXT",
+            sheet="Test Sheet",
+            cellref=f"A{tk}",
+            datamap=datamap,
+        )
+        for tk in [str(x) for x in range(1, 99)]
+    ]
+    session.add_all(dmls)
+    session.commit()
+    session.close()
 
 
 def create_projects(session: Session):

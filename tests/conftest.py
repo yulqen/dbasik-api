@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 from server import app
-from populate import create_projects, create_datamap
+from populate import create_projects, create_datamap, create_datamap_lines
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from starlette.testclient import TestClient
@@ -46,19 +46,9 @@ def datamap(session):
 
 
 @pytest.fixture
-def datamapline(datamap, session):
+def datamaplines(datamap, session):
     session = session()
-    dml = DatamapLine(
-        key="Test Key 1",
-        datatype="TEXT",
-        sheet="Test Sheet",
-        cellref="A10",
-        datamap=datamap,
-    )
-    session.add(dml)
-    session.commit()
-    session.close()
-    yield dml
+    create_datamap_lines(session, datamap)
 
 
 @pytest.fixture
