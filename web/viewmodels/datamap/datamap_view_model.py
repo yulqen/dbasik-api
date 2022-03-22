@@ -11,3 +11,12 @@ class DatamapListViewModel(ViewModelBase):
 
         if not self.datamaps:
             return
+
+
+class DatamapDetailViewModel(ViewModelBase):
+    def __init__(self, request: Request, id: int):
+        super().__init__(request)
+        self.datamap = datamap_service.get_datamap_by_id(id)
+
+        if not self.datamap:
+            return
