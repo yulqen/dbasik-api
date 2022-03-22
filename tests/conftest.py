@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from server import app
+from populate import create_projects, create_datamap
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from starlette.testclient import TestClient
@@ -35,36 +36,12 @@ def client():
 
 @pytest.fixture
 def projects(session):
-    project_type = ProjectType(name="Boring Project", description="Bollocks")
-    project_stage = ProjectStage(name="Stage 1", description="Russles")
-    tier = Tier(name="Tier 1", description="This is a test Tier")
-    session = session()
-    session.add_all([project_stage, project_type, tier])
-    session.commit()
-
-    ps = []
-    for p in ["AAA", "AAB", "ABB", "BBB", "BOOB"]:
-        ps.append(
-            Project(
-                name=f"Test Project {p}",
-                project_stage=project_stage,
-                project_type=project_type,
-                tier=tier,
-            )
-        )
-    session.add_all(ps)
-    session.commit()
-    session.close()
+    create_projects(session)
 
 
 @pytest.fixture
 def datamap(session):
-    session = session()
-    tier = Tier(name="Tier 2", description="This is a test Tier 2")
-    datamap = Datamap(name="Test Datamap", tier=tier)
-    session.add(datamap)
-    session.commit()
-    session.close()
+    datamap = create_datamap(session)
     yield datamap
 
 

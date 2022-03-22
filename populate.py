@@ -1,6 +1,8 @@
 import os
 import os.path
 
+from sqlalchemy.orm import Session
+
 from web.data import db_session
 from web.data.datamap import Datamap
 from web.data.project import Project, Tier, ProjectType, ProjectStage
@@ -8,19 +10,22 @@ from web.data.project import Project, Tier, ProjectType, ProjectStage
 
 def main():
     init_db()
-    create_projects()
-    create_datamaps()
+    session = db_session.create_session()
+    create_projects(session)
+    create_datamap(session)
 
 
-def create_datamaps():
+def create_datamap(session: Session) -> Datamap:
     session = db_session.create_session()
     tier = Tier(name="Tier 2", description="This is a test Tier 2")
     datamap = Datamap(name="Test Datamap", tier=tier)
     session.add(datamap)
     session.commit()
+    session.close()
+    return datamap
 
 
-def create_projects():
+def create_projects(session: Session):
     session = db_session.create_session()
     project_type = ProjectType(name="Boring Project", description="Bollocks")
     project_stage = ProjectStage(name="Stage 1", description="Russles")
@@ -40,6 +45,7 @@ def create_projects():
         )
     session.add_all(ps)
     session.commit()
+    session.close()
 
 
 def init_db():

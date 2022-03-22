@@ -39,7 +39,7 @@ def test_import_csv_lines_to_datamap(dm_csv, datamap, session):
 
 
 def test_datamapline_from_conftest(datamapline):
-    assert datamapline.key == "Test Key 2"
+    assert datamapline.key == "Test Key 1"
     assert datamapline.sheet == "Test Sheet"
     assert datamapline.cellref == "A10"
     assert datamapline.datamap.name == "Test Datamap"
