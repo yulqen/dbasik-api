@@ -15,24 +15,38 @@
 </style>
 
 {% block content %}
+    <div style="margin: auto; width: 50%;">
     <h1>Datamaps</h1>
-    <div>
-        <table style="width: 50%; border: 1px solid black; border-collapse: collapse; border-spacing: 2px;">
-            <thead>
-            <tr style="background-color: #4CAF50; text-align: left">
-                <th>Name</th>
-                <th>Tier</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for dm in datamaps %}
-                <tr>
-                    <td><a href="#">{{ dm.name }}</a></td>
-                    <td><a href="#">{{ dm.tier_name }}</a></td>
+        <div>
+            <table style="width: 80%; border: 1px solid black; border-collapse: collapse; border-spacing: 2px;">
+                <thead>
+                <tr style="background-color: #4CAF50; text-align: left">
+                    <th>Name</th>
+                    <th>Tier</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for dm in datamaps %}
+                    <tr>
+                        <td><a href="#">{{ dm.name }}</a></td>
+                        <td><a href="#">{{ dm.tier_name }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <p></p>
+        <h2>Create a new Datamap</h2>
+        <div style="width: 80%;">
+            <div>
+                <form action="" method="post" accept-charset="utf-8">
+                    <label for="dm_name">Datamap name:</label>
+                    <input type="name" value="name" id="dm_name" type="text" placeholder="Datamap name" required autofocus> 
+                    <label for="dm_file">Datamap name (CSV format):</label>
+                   <input type="file" value="" name="datamap-csv" id="dm_file"/>
+                </form>     
+            </div>
+        </div>
     </div>
 {% endblock %}
 
