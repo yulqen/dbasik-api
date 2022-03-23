@@ -22,3 +22,11 @@ def datamaps(request: Request):
 def datamap(request: Request, id: int):
     vm = DatamapDetailViewModel(request, id)
     return templates.TemplateResponse("datamaps/datamap_detail.html", vm.to_dict())
+
+
+@router.post("/datamaps")
+def receive_datamap_csv(
+    dm_name: str = fastapi.Form(...),
+    datamap_csv: fastapi.UploadFile = fastapi.File(...),
+):
+    return {"file_size": datamap_csv, "dm_name": dm_name}
