@@ -1,9 +1,9 @@
-import pytest
 from web.data.datamap import Datamap
 from web.services.datamap_service import (
-    get_datamap_lines,
     get_datamaps,
     import_csv_to_datamap,
+    get_datamap_by_id,
+    get_datamap_lines_for_datamap,
 )
 
 
@@ -29,6 +29,15 @@ def test_datamap_in_db(session, datamap):
 def test_datamap_service(datamap):
     dms = get_datamaps()
     assert dms[0].name == "Test Datamap"  # type: ignore
+
+
+def test_get_datamap_by_id(datamap):
+    assert get_datamap_by_id(1).name == "Test Datamap"  # type: ignore
+
+
+def test_get_datamap_lines_for_datamap(datamap, datamaplines):
+    dmls = get_datamap_lines_for_datamap(datamap)
+    assert dmls[0].datamap.id == datamap.id
 
 
 def test_import_csv_lines_to_datamap(dm_csv, datamaplines, datamap, session):

@@ -15,13 +15,20 @@ class DML:
     cellref: str
 
 
-def get_datamaps() -> Optional[List[Datamap]]:
+def get_datamaps() -> List[Datamap] | None:
     session = db_session.create_session()
     return session.query(Datamap).all()
 
 
-def get_datamap_lines() -> Optional[List[DatamapLine]]:
-    pass
+def get_datamap_by_id(id: int) -> Datamap | None:
+    session = db_session.create_session()
+    return session.query(Datamap).filter_by(id=id).one()
+
+
+def get_datamap_lines_for_datamap(datamap: Datamap) -> List[DatamapLine] | None:
+    session = db_session.create_session()
+    dmls = session.query(DatamapLine).filter_by(datamap_id=datamap.id).all()
+    return dmls
 
 
 def import_csv_to_datamap(csvf: Path, datamap: Datamap) -> None:

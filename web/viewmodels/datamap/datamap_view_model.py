@@ -20,3 +20,5 @@ class DatamapDetailViewModel(ViewModelBase):
 
         if not self.datamap:
             return
+
+        self.datamap_lines = datamap_service.get_datamap_lines_for_datamap(self.datamap)
