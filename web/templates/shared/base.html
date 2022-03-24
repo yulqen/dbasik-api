@@ -12,10 +12,12 @@
 
 <!-- The sidebar -->
 <div class="sidebar">
-  <a class="active" href="{{ url_for('index') }}">Home</a>
-  <a href="{{ url_for('datamaps') }}">Datamaps</a>
-  <a href="{{ url_for('projects') }}">Projects</a>
-  <a href="#about">About</a>
+  <ul>
+    <li><a href="{{ url_for('index') }}">Home</a></li>
+    <li><a href="{{ url_for('datamaps') }}">Datamaps</a></li>
+    <li><a href="{{ url_for('projects') }}">Projects</a></li>
+    <li><a href="#about">About</a>
+  </ul>
 </div>
 
 <div class="content" id="content">{% block content %}{% endblock %}</div>

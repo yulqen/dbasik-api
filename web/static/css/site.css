@@ -3,10 +3,14 @@
     font-family: "Roboto Slab";
 }
 
+.title {
+  font-size: 2.4em;  
+}
+
 /* forms */
 .form-container {
     padding: 20px;
-    width: 30%;
+    width: 60%;
     margin: auto;
     border-radius: 6px;
     background-color: #a7d2ae;
@@ -26,12 +30,12 @@ body {
 
 
 #register-intro {
-    padding: 10px;
+    padding: 1px;
 }
 
 #register-header {
     margin: auto;
-    width: 20%;
+    width: 40%;
     padding-bottom: 10px;
 }
 
@@ -52,38 +56,58 @@ body {
 .sidebar {
   margin: 0;
   padding: 0;
+  padding-top: 10px;
   width: 200px;
   background-color: #ebf9f6;
-  position: fixed;
+  position: absolute;
   height: 100%;
   overflow: auto;
 }
 
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
 /* Sidebar links */
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
-}
+/* .sidebar a { */
+/*   display: block; */
+/*   color: black; */
+/*   padding: 16px; */
+/*   text-decoration: none; */
+/* } */
 
-/* Active/current link */
-.sidebar a.active {
-  background-color: #04AA6D;
-  color: white;
-}
+/* /1* Active/current link *1/ */
+/* .sidebar a.active { */
+/*   background-color: #04AA6D; */
+/*   color: white; */
+/* } */
 
-/* Links on mouse-over */
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
+/* /1* Links on mouse-over *1/ */
+/* .sidebar a:hover:not(.active) { */
+/*   background-color: #555; */
+/*   color: white; */
+/* } */
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
   margin-left: 200px;
   padding: 1px 16px;
+  padding-top: 10px;
   height: 1000px;
+}
+
+.content h1 {
+  margin: inherit;
+}
+
+table.info {
+  width: 80%;
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 2px;
+  margin-top: 10px;
 }
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
