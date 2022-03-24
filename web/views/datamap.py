@@ -1,3 +1,4 @@
+import csv
 import fastapi
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
@@ -29,4 +30,8 @@ def receive_datamap_csv(
     dm_name: str = fastapi.Form(...),
     datamap_csv: fastapi.UploadFile = fastapi.File(...),
 ):
-    return {"file_size": datamap_csv, "dm_name": dm_name}
+    breakpoint()
+    lines = csv.reader(datamap_csv.file)
+    for l in lines:
+        print(l)
+    return None
