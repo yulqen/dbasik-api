@@ -1,7 +1,9 @@
 import csv
+from fastapi import UploadFile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Optional
+from codecs import iterdecode
 
 from ..data import db_session
 from ..data.datamap import Datamap, DatamapLine
@@ -45,6 +47,26 @@ def import_csv_to_datamap(csvf: Path, datamap: Datamap) -> None:
             sheet=d.sheet,
             cellref=d.cellref,
             datamap=datamap,
+        )
+        session.add(_d)
+    session.commit()
+    session.close()
+
+
+def import_uploaded_csv_to_datamap(f: UploadFile, datamap: str) -> None:
+    dmls = []
+    csvfile = csv.DictReader(iterdecode(f.file, "utf-8"))
+    for row in csvfile:
+        dmls.append(DML(**row))
+    session = db_session.create_session()
+    dm = Datamap(name=datamap)
+    for d in dmls:
+        _d = DatamapLine(
+            key=d.key,
+            datatype=d.datatype,
+            sheet=d.sheet,
+            cellref=d.cellref,
+            datamap=dm,
         )
         session.add(_d)
     session.commit()
