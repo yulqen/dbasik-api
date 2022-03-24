@@ -19,7 +19,7 @@
 input {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px;
+    margin: 8px 2px 20px 0;
     border-radius: 3px;
     border: 1px solid green;
 }
@@ -70,25 +70,33 @@ body {
   margin: 0;
 }
 
-/* Sidebar links */
-/* .sidebar a { */
-/*   display: block; */
-/*   color: black; */
-/*   padding: 16px; */
-/*   text-decoration: none; */
-/* } */
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: row wrap;
+  height 200px;
+}
 
-/* /1* Active/current link *1/ */
-/* .sidebar a.active { */
-/*   background-color: #04AA6D; */
-/*   color: white; */
-/* } */
+#callout-box {
+  background-color: #DCE3D5;
+  border-color: gray;
+  border-radius: 2px;
+  padding: 10px;
+  margin-top: 10px;
+  width: 18%;
+}
 
-/* /1* Links on mouse-over *1/ */
-/* .sidebar a:hover:not(.active) { */
-/*   background-color: #555; */
-/*   color: white; */
-/* } */
+#new-datamap-form {
+  background-color: #D3D5CF;
+  padding: 10px;
+  border-color: gray;
+  border-radius: 2px;
+  margin-left: 50px;
+  margin-top: 10px;
+  width: 50%;
+}
+
+
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {

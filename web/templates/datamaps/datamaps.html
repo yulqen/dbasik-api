@@ -6,48 +6,50 @@
 {% endblock %}
 
 <style>
-    th, td {
-        border-bottom: 1px solid red;
-    }
+th, td {
+    border-bottom: 1px solid red;
+}
      tr:hover {
          background-color: coral;
      }
 </style>
 
 {% block content %}
-    <div>
+<div>
     <h1>Datamaps</h1>
-        <div>
-            <table class="info">
-                <thead>
-                <tr style="background-color: #4CAF50; text-align: left">
-                    <th>Name</th>
-                    <th>Tier</th>
-                </tr>
-                </thead>
-                <tbody>
+    <div style="margin: 10px 0px; 10px 0px;">
+        <h3>Instructions</h3>
+        <p>Datamaps are used for this and that. They are very useful for certain things.
+            Think about that - VERY useful for certain things.</p>
+
+        <p>Use the <strong>Create a new Datamap</strong> form below to upload a CSV file 
+            into the system.</p>
+
+    </div>
+    <div class="flex-container">
+        <div id="callout-box">
+            <strong>Current datamaps:</strong>
+            <ul>
                 {% for dm in datamaps %}
-                    <tr>
-                        <td><a href="#">{{ dm.name }}</a></td>
-                        <td><a href="#">{{ dm.tier_name }}</a></td>
-                    </tr>
+                <li><a href="#">{{ dm.name }}</a> ({{ dm.tier_name }})</li>
                 {% endfor %}
-                </tbody>
-            </table>
+            </ul>
         </div>
-        <p></p>
-        <h2>Create a new Datamap</h2>
-        <div style="width: 80%;">
+        <div id="new-datamap-form">
+            <h2 style="margin: 0;">Create a new Datamap</h2>
             <div>
                 <form action="" method="post" enctype="multipart/form-data">
                     <label for="dm_name">Datamap name:</label>
                     <input type="text" value="" id="dm_name" name="dm_name" placeholder="Datamap name" required autofocus> 
                     <label for="dm_file">Datamap name (CSV format):</label>
-                   <input type="file" value="" name="datamap_csv" id="dm_file"/>
-                   <button class="button" type="submit">Upload</button>
+                    <input type="file" value="" name="datamap_csv" id="dm_file"/>
+                    <button class="button" type="submit">Upload</button>
                 </form>     
             </div>
         </div>
+
     </div>
+    <p></p>
+</div>
 {% endblock %}
 
