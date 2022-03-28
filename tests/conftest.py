@@ -55,3 +55,33 @@ def datamaplines(datamap, session):
 def dm_csv():
     f = Path.cwd() / "tests" / "resources" / "dm_csv.csv"
     return f
+
+
+@pytest.fixture
+def dm_non_csv():
+    f = Path.cwd() / "tests" / "resources" / "dm_non_csv.csv"
+    return f
+
+
+@pytest.fixture
+def dm_csv_bad_key():
+    f = Path.cwd() / "tests" / "resources" / "dm_csv_bad_key.csv"
+    return f
+
+
+@pytest.fixture
+def dm_csv_bad_datatype():
+    f = Path.cwd() / "tests" / "resources" / "dm_csv_bad_datatype.csv"
+    return f
+
+
+@pytest.fixture
+def dm_csv_bad_sheet():
+    f = Path.cwd() / "tests" / "resources" / "dm_csv_bad_sheet.csv"
+    return f
+
+
+@pytest.fixture
+def dm_csv_bad_cellref():
+    f = Path.cwd() / "tests" / "resources" / "dm_csv_bad_cellref.csv"
+    return f

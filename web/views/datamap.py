@@ -1,9 +1,9 @@
-import csv
 import fastapi
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
 
 from ..services.datamap_service import import_uploaded_csv_to_datamap
+from ..exceptions import BadCSVError
 
 from ..viewmodels.datamap.datamap_view_model import (
     DatamapListViewModel,
@@ -29,8 +29,14 @@ def datamap(request: Request, id: int):
 
 @router.post("/datamaps")
 def receive_datamap_csv(
+    request: Request,
     dm_name: str = fastapi.Form(...),
     datamap_csv: fastapi.UploadFile = fastapi.File(...),
 ):
-    import_uploaded_csv_to_datamap(datamap_csv, dm_name)
+    try:
+        import_uploaded_csv_to_datamap(datamap_csv, dm_name)
+    except BadCSVError as e:
+        vm = DatamapListViewModel(request)
+        vm.error = e.args[0]
+        return templates.TemplateResponse("datamaps/datamaps.html", vm.to_dict())
     return None

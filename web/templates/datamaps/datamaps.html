@@ -43,6 +43,9 @@ th, td {
                     <input type="text" value="" id="dm_name" name="dm_name" placeholder="Datamap name" required autofocus> 
                     <label for="dm_file">Datamap name (CSV format):</label>
                     <input type="file" value="" name="datamap_csv" id="dm_file"/>
+                    {% if error %}
+                        <div class="error" style="color: red;">{{ error }}</div>
+                    {% endif %}
                     <button class="button" type="submit">Upload</button>
                 </form>     
             </div>
